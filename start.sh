@@ -10,4 +10,5 @@ python manage.py migrate
 python manage.py collectstatic --noinput
 
 # Start Gunicorn server
-gunicorn --bind 0.0.0.0:8000 your_project.wsgi:application
+gunicorn --bind 0.0.0.0:8000 website.wsgi:application
+

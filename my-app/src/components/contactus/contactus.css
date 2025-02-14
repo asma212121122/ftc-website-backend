@@ -1,0 +1,54 @@
+.ContactUs{
+    text-align: center;
+}
+.contact-form{
+    width: 70%;
+    margin: 30px auto;
+    color: var(--secondary-color);
+}
+.contact-form .input{
+    width: 80%;
+    margin: 0 auto;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+.name-input div{
+    width: 50%;
+
+}
+.input label{
+    display: block;
+    text-align: left;
+font-size: 18px;
+    font-weight: 700;
+}
+
+.input input ,
+.input textarea{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+.input textarea{
+    height: 100px;
+}
+.contact-form button{
+    width: 80%;
+    border-radius: 8px;
+    margin-top: 20px;
+    height: 40px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    font-weight: 700;
+    
+}
+@media screen and (max-width: 1024px){
+    .contact-form{
+        width: 100%;
+    }
+}

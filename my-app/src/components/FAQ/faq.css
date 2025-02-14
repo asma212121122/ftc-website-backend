@@ -1,0 +1,129 @@
+
+ .FAQ{
+    text-align: center;
+    margin-bottom: 100px;
+    width: 100vw;
+ }
+.FAQ .content{
+    margin-top: 40px;
+    width: 100%;
+    padding: 0 50px;
+    color: var(--secondary-color);
+    gap: 30px;
+ }
+ .content .questions{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+ }
+ .question-box{
+    border-radius: 6px;
+    border: 1px solid #131D31; 
+    text-align: left;
+    margin-bottom: 15px;
+    height: auto; 
+    width: 100%;
+ }
+ .question-box .question{
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--secondary-color);
+    font-weight: 600;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+ }
+.question .icon {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 58px;
+    background-color: var(--primary-color);
+    text-align: center;
+    padding: 4px;
+    border-radius: 0 6px  6px  0 ;
+    font-size: 36px;
+    font-weight: 300;
+}
+.question p{
+    padding: 15px 20px; 
+   
+}
+.question p .number{
+    margin-right:10px;
+}
+.question-box .answer{
+    margin-top: 15px;
+    padding: 0 5px 20px 65px;
+    font-size: 14px;
+    font-weight: 200;
+}
+.FAQ .content .images{
+    margin-top: 3%;
+    width: 45%;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    z-index: 5;
+}
+.content .images::after{
+    content: '';
+    position: absolute;
+    top: -28px;
+    right: 50px;
+    height: 110%;
+    width: 77%;
+    border-top: 5px solid var(--primary-color); 
+    border-right: 5px solid var(--primary-color);
+    z-index: -1;
+}
+.content .images::before{
+    content: '';
+    position: absolute;
+    bottom: -30px; 
+    left: 50px;
+    height: 110%;
+    width: 77%;
+    border-bottom: 5px solid #131D31; 
+    border-left: 5px solid #131D31;
+    z-index: -1;
+}
+.FAQ .content .images .image{
+    max-height: 120px;
+    min-height: 120px;
+    width: 80%;
+
+}
+.FAQ .content .images .image img{
+    height: 100%;
+    width: 90%;
+}
+@media screen and (max-width: 1200px) {
+    .FAQ{
+        margin-top: 70px;
+    }
+    .FAQ .content .images{
+        display: none;
+    }
+    .content .questions{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 680px){
+    .FAQ .content{
+        padding: 0 10px;
+    }
+    .content .questions{
+        width: 100%;
+    }
+    .question {
+        font-size: 10px;
+        padding-right: 30px;
+       
+    }
+}

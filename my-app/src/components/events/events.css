@@ -1,0 +1,63 @@
+.Events{
+    text-align: center;
+    margin: 50px 30px;
+}
+.events{
+    gap: 50px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+.event{
+    min-height: 420px;
+    min-width:320px;
+    max-height: 420px;
+    max-width:320px;
+    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+    flex-direction: column;
+    text-align: left;
+    background: #131D31;
+    padding: 10px;
+
+
+}
+.event .image{
+    min-height: 150px;
+
+    border-radius:8px 8px 0 0  ;
+    margin: 10px;
+    border: 2px solid var(--primary-color);
+    overflow: hidden;
+}
+.event .event-image img{
+    width: 100%;
+    object-fit: fill;
+    object-position: center;
+}
+.event p{
+    color: white;
+    padding: 3px 10px;
+    font-size: 8px;
+}
+.event .name{
+    font-size: 20px;
+    font-weight: 600;
+}
+.event .details{
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.event .event-description{
+    font-size: 12px;
+    font-weight: 300;
+    text-align: left;
+    padding:  10px;
+    line-height: 22px;
+}
+@media screen and (max-width: 1024px) {
+    .Events{
+        margin-top: 100px;
+    }
+   
+}

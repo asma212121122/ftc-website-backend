@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+
+# Database files
+db.sqlite3
+db_backup.sqlite3
+
+# Media and static files
+media/
+staticfiles/
+
+# Compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE settings
+.vscode/
+.idea/
+
+# Environment variables
+.env

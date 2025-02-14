@@ -9,7 +9,13 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-ALLOWED_HOSTS = ["ftc-website-backend-production.up.railway.app", "localhost"]
+ALLOWED_HOSTS = [
+    os.getenv("RAILWAY_URL", "localhost"),
+    "ftc-website-backend-production.up.railway.app",
+    "0.0.0.0",
+    "127.0.0.1"
+]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 

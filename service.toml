@@ -1,5 +1,7 @@
-[build]
-builder = "nixpacks"
 
 [deploy]
 startCommand = "python3 manage.py runserver 0.0.0.0:$PORT"
+
+[build]
+builder = "nixpacks"
+buildCommand = "python3 -m venv /opt/venv && source /opt/venv/bin/activate && pip install -r requirements.txt"

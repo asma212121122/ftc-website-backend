@@ -25,19 +25,10 @@ SECRET_KEY = os.getenv("SECRET_KEY", "your-default-secret-key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-# Database Configuration
-if os.getenv("DATABASE_URL"):
-    DATABASES = {
-        "default": dj_database_url.config(default=os.getenv("DATABASE_URL"))
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
 
+DATABASES = {
+    "default": dj_database_url.config(default=os.getenv("postgresql://postgres:ChlitNUDYOSBOnRbbfCGCntgSWHeIkkZ@postgres.railway.internal:5432/railway"))
+}
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',

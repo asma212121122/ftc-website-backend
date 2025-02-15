@@ -11,4 +11,3 @@ python manage.py collectstatic --noinput
 
 # Start Gunicorn server
 gunicorn --bind 0.0.0.0:8000 website.wsgi:application
-

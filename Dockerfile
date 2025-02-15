@@ -22,11 +22,5 @@ COPY . .
 # Expose the port that Django runs on
 EXPOSE 8000
 
-# Collect static files
-RUN python manage.py collectstatic --noinput
-
-# Run database migrations
-RUN python manage.py migrate
-
 # Start the Django application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "your_project_name.wsgi:application"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --bind 0.0.0.0:8000 core.wsgi:application"]

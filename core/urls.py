@@ -10,5 +10,5 @@ urlpatterns = [
     path('workshops/', views.workshop_list, name='workshop_list'), 
     path('api/workshops/', views.WorkshopListView.as_view(), name='workshop_list-api'), 
     path("send-email/", views.send_email, name="send_email"),
-    path("health/", healthcheck, name="healthcheck"),
+    path("health/", views.healthcheck, name="healthcheck"),
 ]

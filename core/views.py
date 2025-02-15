@@ -9,6 +9,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+def healthcheck(request):
+    return JsonResponse({"status": "ok"}, status=200)
+
 def event_list(request):
     events = Event.objects.all() 
     return render(request, 'event_list.html' , {'events':events})

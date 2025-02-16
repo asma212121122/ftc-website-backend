@@ -23,12 +23,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code
 COPY . .
 
-# Run migrations and collect static files
-RUN python manage.py migrate
-RUN python manage.py collectstatic --noinput
-
 # Expose the port
 EXPOSE $PORT
 
-# Start Gunicorn
-CMD ["sh", "-c", "gunicorn --timeout 600 --workers 1 website.wsgi:application --bind 0.0.0.0:$PORT"]
+# Start Gunicorn with migrations and static collection
+CMD ["sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --timeout 600 --workers 1 website.wsgi:application --bind 0.0.0.0:$PORT"]

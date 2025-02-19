@@ -26,5 +26,8 @@ COPY . .
 # Expose the port
 EXPOSE $PORT
 
+# Create the log directory and file
+RUN mkdir -p /var/log && touch /var/log/django.log && chmod 666 /var/log/django.log
+
 # Start Gunicorn with migrations and static collection
 CMD ["sh", "-c", "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --timeout 600 --workers 1 website.wsgi:application --bind 0.0.0.0:$PORT"]

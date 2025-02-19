@@ -9,16 +9,13 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-ALLOWED_HOSTS = [
-    os.getenv("RAILWAY_URL", "localhost"),
-    "ftc-website-backend-production.up.railway.app",
-    "0.0.0.0",
-    "127.0.0.1"
-]
+ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'static')
+]
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY", "your-default-secret-key")
 
@@ -26,9 +23,9 @@ SECRET_KEY = os.getenv("SECRET_KEY", "your-default-secret-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
-DATABASES = {
-    "default": dj_database_url.config(default=os.getenv("postgresql://postgres:ChlitNUDYOSBOnRbbfCGCntgSWHeIkkZ@postgres.railway.internal:5432/railway"))
-}
+# DATABASES = {
+#     "default": dj_database_url.config(default=os.getenv("postgresql://postgres:ChlitNUDYOSBOnRbbfCGCntgSWHeIkkZ@postgres.railway.internal:5432/railway"))
+# }            
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -120,4 +117,23 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs', 'django.log'),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
 }

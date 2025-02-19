@@ -1,6 +1,7 @@
-version: '3.8'
+
 services:
   web:
+    build: .
     image: my-django-app
     ports:
       - "8081:8000"
@@ -8,6 +9,12 @@ services:
       - DATABASE_URL=postgresql://postgres:ChlitNUDYOSBOnRbbfCGCntgSWHeIkkZ@postgres.railway.internal:5432/railway
     depends_on:
       - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 6
+      start_period: 60s
   db:
     image: postgres:13
     environment:

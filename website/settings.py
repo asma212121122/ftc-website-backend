@@ -133,3 +133,6 @@ LOGGING = {
         },
     },
 }
+CSRF_TRUSTED_ORIGINS = [
+    "https://ftc-website-backend-production.up.railway.app"
+]

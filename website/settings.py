@@ -3,8 +3,10 @@ import os
 import dj_database_url
 from dotenv import load_dotenv
 
-# Load environment variables from .env
 load_dotenv()
+
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,10 +22,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "your-default-secret-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
-# DATABASES = {
-#     "default": dj_database_url.config(default=os.getenv("postgresql://postgres:ChlitNUDYOSBOnRbbfCGCntgSWHeIkkZ@postgres.railway.internal:5432/railway"))
-# }            
-# Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,6 +97,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  
+    "https://ftc-website-backend-production.up.railway.app",
 ]
 
 # Email Configuration (Moved credentials to .env)
@@ -111,10 +112,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
+if os.getenv('ENVIRONMENT') == 'development':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
+print("DATABASE_URL:", os.getenv('DATABASE_URL'))
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

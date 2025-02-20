@@ -10,13 +10,13 @@ const Events = () => {
     useEffect(() => {
         const getEvents = async () => {
           try {
-            const response = await axios.get("http://127.0.0.1:8000/api/events/");
+            const response = await axios.get("https://ftc-website-backend-production.up.railway.app/api/events/");
             console.log("API Response:", response.data); 
             const updatedEvents = response.data.map((event) => ({
               ...event,
               image: event.image.startsWith("/media/")
-                ? `http://127.0.0.1:8000${event.image}`
-                : `http://127.0.0.1:8000/media/${event.image}`, 
+                ? `https://ftc-website-backend-production.up.railway.app${event.image}`
+                : `https://ftc-website-backend-production.up.railway.app/media/${event.image}`, 
             }));
             setEvents(updatedEvents);
             console.log("Updated Events:", updatedEvents);

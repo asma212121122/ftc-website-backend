@@ -8,14 +8,14 @@ const Trainings = () => {
     useEffect(() => {
         const getWorkshops = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/workshops/");
+                const response = await axios.get("https://ftc-website-backend-production.up.railway.app/api/workshops/");
                 console.log("API Response:", response.data);
 
                 const updatedWorkshops = response.data.map((workshop) => ({
                     ...workshop,
                     image: workshop.image.startsWith("/media/")
-                        ? `http://127.0.0.1:8000${workshop.image}`
-                        : `http://127.0.0.1:8000/media/${workshop.image}`,
+                        ? `https://ftc-website-backend-production.up.railway.app${workshop.image}`
+                        : `https://ftc-website-backend-production.up.railway.app/media/${workshop.image}`,
                 }));
 
                 setWorkshops(updatedWorkshops);

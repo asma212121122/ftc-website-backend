@@ -12,12 +12,12 @@ const Members = () => {
   useEffect(() => {
     const getMembers = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/api/members/");
+        const response = await axios.get("https://ftc-website-backend-production.up.railway.app/api/members/");
         const updatedMembers = response.data.map((member) => ({
           ...member,
           image: member.image.startsWith("/media/")
-            ? `http://127.0.0.1:8000${member.image}`
-            : `http://127.0.0.1:8000/media/${member.image}`,
+            ? `https://ftc-website-backend-production.up.railway.app${member.image}`
+            : `https://ftc-website-backend-production.up.railway.app/media/${member.image}`,
         }));
         setMembers(updatedMembers);
       } catch (error) {

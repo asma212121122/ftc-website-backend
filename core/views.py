@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-
+import logging
 
 def health_check(request):
     return JsonResponse({"status": "ok"})
@@ -45,21 +45,54 @@ class MemberListView(APIView):
         serializer = MemberSerializer(members, many=True)
         return Response(serializer.data)
 
+# @csrf_exempt
+# def send_email(request):
+#     if request.method == "POST":
+#         data = json.loads(request.body)
+#         first_name = data.get("firstName")
+#         last_name = data.get("lastName")
+#         user_email = data.get("email")
+#         message = data.get("message")
+
+#         # Email details
+#         subject = f"Message from {first_name} {last_name}"
+#         email_message = f"From: {first_name} {last_name}\nEmail: {user_email}\n\n{message}"
+#         from_email = user_email        
+
+#         try:
+#             send_mail(
+#                 subject,
+#                 email_message,
+#                 from_email, 
+#                 ["chohraasma641@gmail.com"],  
+#                 fail_silently=False,
+#             )
+#             return JsonResponse({"message": "Email sent successfully"})
+#         except Exception as e:
+#             return JsonResponse({"error": str(e)}, status=500)
+
+#     return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+logger = logging.getLogger(__name__)
+
 @csrf_exempt
 def send_email(request):
     if request.method == "POST":
-        data = json.loads(request.body)
-        first_name = data.get("firstName")
-        last_name = data.get("lastName")
-        user_email = data.get("email")
-        message = data.get("message")
-
-        # Email details
-        subject = f"Message from {first_name} {last_name}"
-        email_message = f"From: {first_name} {last_name}\nEmail: {user_email}\n\n{message}"
-        from_email = user_email        
-
         try:
+            data = json.loads(request.body)
+            first_name = data.get("firstName")
+            last_name = data.get("lastName")
+            user_email = data.get("email")
+            message = data.get("message")
+
+            logger.info(f"Received email request from {first_name} {last_name} ({user_email})")
+
+            # Email details
+            subject = f"Message from {first_name} {last_name}"
+            email_message = f"From: {first_name} {last_name}\nEmail: {user_email}\n\n{message}"
+            from_email = user_email        
+
             send_mail(
                 subject,
                 email_message,
@@ -67,8 +100,10 @@ def send_email(request):
                 ["chohraasma641@gmail.com"],  
                 fail_silently=False,
             )
+            logger.info("Email sent successfully")
             return JsonResponse({"message": "Email sent successfully"})
         except Exception as e:
+            logger.error(f"Error sending email: {str(e)}")
             return JsonResponse({"error": str(e)}, status=500)
-
+    logger.error("Invalid request method")
     return JsonResponse({"error": "Invalid request"}, status=400)

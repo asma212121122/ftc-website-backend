@@ -99,7 +99,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  
+    "http://localhost:5173", 
+    "http://localhost:4173",  
     "https://ftc-website-backend-production.up.railway.app",
 ]
 # Email Configuration (Moved credentials to .env)
@@ -109,6 +110,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

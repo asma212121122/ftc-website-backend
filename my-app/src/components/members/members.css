@@ -1,7 +1,11 @@
+
+
 @font-face {
   font-family: 'slick';
-  src: url('../node_modules/slick-carousel/slick/fonts/slick.ttf') format('truetype');
+  src: url('~slick-carousel/slick/fonts/slick.ttf') format('truetype'),
+       url('~slick-carousel/slick/fonts/slick.woff') format('truetype');
 }
+
 
   .member, .member-card, .member-details {
     float: none;
